@@ -39,7 +39,7 @@ const Features = () => {
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16 text-center">
           <h2 className="mb-4 text-4xl font-bold text-foreground sm:text-5xl">
-            Why Choose PredictX
+            Why Choose JusPredict
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             The most advanced prediction market platform with features designed for serious traders

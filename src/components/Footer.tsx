@@ -8,8 +8,8 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           <div className="col-span-1 md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <img src={logo} alt="PredictX Logo" className="h-10 w-10" />
-              <span className="text-xl font-bold text-foreground">PredictX</span>
+              <img src={logo} alt="JusPredict Logo" className="h-10 w-10" />
+              <span className="text-xl font-bold text-foreground">JusPredict</span>
             </div>
             <p className="text-muted-foreground mb-6 max-w-md">
               The next generation prediction market platform. Trade on real-world events with confidence.
@@ -49,7 +49,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
-          <p>&copy; 2025 PredictX. All rights reserved.</p>
+          <p>&copy; 2025 JusPredict. All rights reserved.</p>
         </div>
       </div>
     </footer>
