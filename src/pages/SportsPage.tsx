@@ -190,15 +190,15 @@ const SportsPage = () => {
   const selectedEventData = dummySportsEvents[selectedEvent];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-background text-foreground">
       <Navbar />
       <div className="flex h-[calc(100vh-64px)]">
         {/* Left Sidebar - Categories */}
-        <div className="w-64 border-r border-gray-200 bg-white overflow-y-auto">
+        <div className="w-64 border-r border-border bg-background overflow-y-auto">
           <div className="p-4">
             {/* Filters Section */}
             <div className="mb-6">
-              <h3 className="text-sm font-medium text-gray-700 mb-3">Filters</h3>
+              <h3 className="text-sm font-medium text-foreground mb-3">Filters</h3>
               <div className="space-y-1">
                 {filters.map((filter) => (
                   <button
@@ -207,10 +207,10 @@ const SportsPage = () => {
                     className={`w-full flex items-center gap-2 px-3 py-2 rounded text-sm font-medium transition-colors ${
                       filter.isActive || selectedFilter === filter.name
                         ? "text-green-600"
-                        : "text-gray-700 hover:bg-gray-50"
+                        : "text-foreground hover:bg-secondary"
                     }`}
                   >
-                    <span className={filter.isActive || selectedFilter === filter.name ? "text-green-600" : "text-gray-500"}>
+                    <span className={filter.isActive || selectedFilter === filter.name ? "text-green-600" : "text-muted-foreground"}>
                       {filter.icon}
                     </span>
                     {filter.name}
@@ -221,7 +221,7 @@ const SportsPage = () => {
 
             {/* Sports Section */}
             <div>
-              <h3 className="text-sm font-medium text-gray-700 mb-3">Sports</h3>
+              <h3 className="text-sm font-medium text-foreground mb-3">Sports</h3>
               <div className="space-y-1">
                 {categories.map((category) => (
                   <div key={category.name}>
@@ -233,7 +233,7 @@ const SportsPage = () => {
                           setSelectedCategory(category.name);
                         }
                       }}
-                      className="w-full flex items-center justify-between px-3 py-2 rounded text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+                      className="w-full flex items-center justify-between px-3 py-2 rounded text-sm font-medium text-foreground hover:bg-secondary transition-colors"
                     >
                       <span className="flex items-center gap-2">
                         {category.icon ? (
@@ -249,14 +249,14 @@ const SportsPage = () => {
                       </span>
                       <div className="flex items-center gap-2">
                         {category.count !== undefined && (
-                          <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded">
+                          <span className="text-xs text-muted-foreground bg-secondary px-2 py-0.5 rounded">
                             {category.count}
                           </span>
                         )}
                         {category.subcategories.length > 0 ? (
-                          <ChevronDown className="h-4 w-4 text-gray-400" />
+                          <ChevronDown className="h-4 w-4 text-muted-foreground" />
                         ) : category.hasNavigation ? (
-                          <ChevronRight className="h-4 w-4 text-gray-400" />
+                          <ChevronRight className="h-4 w-4 text-muted-foreground" />
                         ) : null}
                       </div>
                     </button>
@@ -266,7 +266,7 @@ const SportsPage = () => {
                           <button
                             key={subcategory.name}
                             onClick={() => setSelectedCategory(subcategory.name)}
-                            className="w-full text-left px-3 py-2 rounded text-sm text-gray-600 hover:bg-gray-50 transition-colors"
+                            className="w-full text-left px-3 py-2 rounded text-sm text-muted-foreground hover:bg-secondary transition-colors"
                           >
                             {subcategory.name}
                           </button>
@@ -281,23 +281,23 @@ const SportsPage = () => {
         </div>
 
         {/* Middle Section - SportsCard */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-6 bg-background">
           <div className="max-w-3xl mx-auto">
             <div className="flex items-center justify-between mb-6">
-              <h1 className="text-3xl font-bold text-gray-900">Football</h1>
+              <h1 className="text-3xl font-bold text-foreground">Football</h1>
               <Button variant="ghost" size="icon">
                 <Settings className="h-5 w-5" />
               </Button>
             </div>
             
           <div className="mb-6 flex justify-center items-center">
-              <div className="inline-flex rounded-lg border border-gray-300 bg-gray-200 p-1">
+              <div className="inline-flex rounded-lg border border-border bg-secondary p-1">
                 <button
                   onClick={() => setSelectedTab("Ongoing")}
                   className={`px-6 py-2 text-sm font-medium transition-all ${
                     selectedTab === "Ongoing"
-                      ? "bg-white text-gray-800 rounded"
-                      : "bg-transparent text-gray-700 hover:bg-gray-300 rounded"
+                      ? "bg-card text-foreground rounded"
+                      : "bg-transparent text-foreground/80 hover:bg-muted rounded"
                   }`}
                 >
                   Ongoing
@@ -306,8 +306,8 @@ const SportsPage = () => {
                   onClick={() => setSelectedTab("Upcoming")}
                   className={`px-6 py-2 text-sm font-medium transition-all ${
                     selectedTab === "Upcoming"
-                      ? "bg-white text-gray-800 rounded"
-                      : "bg-transparent text-gray-700 hover:bg-gray-300 rounded"
+                      ? "bg-card text-foreground rounded"
+                      : "bg-transparent text-foreground/80 hover:bg-muted rounded"
                   }`}
                 >
                   Upcoming
@@ -316,8 +316,8 @@ const SportsPage = () => {
                   onClick={() => setSelectedTab("Past")}
                   className={`px-6 py-2 text-sm font-medium transition-all ${
                     selectedTab === "Past"
-                      ? "bg-white text-gray-800 rounded"
-                      : "bg-transparent text-gray-700 hover:bg-gray-300 rounded"
+                      ? "bg-card text-foreground rounded"
+                      : "bg-transparent text-foreground/80 hover:bg-muted rounded"
                   }`}
                 >
                   Past
@@ -340,13 +340,13 @@ const SportsPage = () => {
         </div>
 
         {/* Right Sidebar - Trading Details */}
-        <div className="w-96 border-l border-gray-200 bg-white overflow-y-auto">
+        <div className="w-96 border-l border-border bg-background overflow-y-auto">
           <div className="p-6">
             <div className="flex flex-col items-center mb-6">
               <div className="w-16 h-16 rounded-lg bg-blue-600 flex items-center justify-center mb-4">
                 <span className="text-white text-2xl">🏈</span>
               </div>
-              <h2 className="text-lg font-semibold text-center text-gray-900">
+              <h2 className="text-lg font-semibold text-center text-foreground">
                 {selectedEventData.title}
               </h2>
             </div>
@@ -360,7 +360,7 @@ const SportsPage = () => {
                 <Button variant="outline" className="flex-1 border-green-500 text-green-600 hover:bg-green-50">
                   Buy
                 </Button>
-                <Button variant="outline" className="flex-1 border-gray-300 text-gray-600 hover:bg-gray-50">
+                <Button variant="outline" className="flex-1 border-border text-muted-foreground hover:bg-secondary">
                   Sell
                 </Button>
               </div>
@@ -382,10 +382,10 @@ const SportsPage = () => {
               </div>
 
               <div className="mb-4">
-                <label className="block text-sm font-medium text-gray-700 mb-2">
+                <label className="block text-sm font-medium text-foreground mb-2">
                   Amount
                 </label>
-                <div className="text-2xl font-bold text-gray-900">$0</div>
+                <div className="text-2xl font-bold text-foreground">$0</div>
               </div>
 
               <div className="mb-6">

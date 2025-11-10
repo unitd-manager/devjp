@@ -589,13 +589,13 @@ const Markets = () => {
   ];
 
   return (
-    <section id="markets" className="py-20 bg-white">
+    <section id="markets" className="py-20 bg-gray-900">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12 text-center">
-          <h2 className="mb-4 text-4xl font-bold text-foreground sm:text-5xl">
+          <h2 className="mb-4 text-4xl font-bold text-white sm:text-5xl">
             Trending Sports
           </h2>
-          <p className="text-lg text-muted-foreground">
+          <p className="text-lg text-gray-300">
             Trade on the most popular prediction games right now
           </p>
         </div>

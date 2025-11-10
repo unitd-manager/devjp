@@ -36,25 +36,23 @@ const SportsCard: React.FC<SportsCardProps> = ({
       },
     });
   };
-  const isDark = true; // Force dark theme for all cards
+  const containerClasses = "border-border bg-secondary hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.05),inset_-3px_-3px_10px_rgba(0,0,0,0.2),0_10px_22px_rgba(0,0,0,0.35)]";
 
-  const containerClasses = "border-gray-700 bg-gray-800 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.05),inset_-3px_-3px_10px_rgba(0,0,0,0.2),0_10px_22px_rgba(0,0,0,0.35)]";
-
-  const titleClasses = "text-white";
-  const metaTextClasses = "text-gray-300";
-  const iconClasses = "text-gray-300";
-  const descClasses = "text-gray-200";
-  const rightPanelBorder = "border-gray-700";
-  const rightPanelBg = "bg-white/10";
-  const prizeAmountClasses = "text-green-400";
-  const buttonClasses = "bg-gray-100 hover:bg-white text-gray-900";
+  const titleClasses = "text-foreground";
+  const metaTextClasses = "text-muted-foreground";
+  const iconClasses = "text-muted-foreground";
+  const descClasses = "text-foreground/80";
+  const rightPanelBorder = "border-border";
+  const rightPanelBg = "bg-card";
+  const prizeAmountClasses = "text-green-500";
+  const buttonClasses = "bg-primary hover:bg-primary/90 text-primary-foreground";
 
   return (
     <div className={`relative flex items-center justify-between p-6 rounded-lg border shadow-[inset_2px_2px_6px_rgba(255,255,255,0.6),inset_-3px_-3px_8px_rgba(0,0,0,0.05),0_6px_18px_rgba(0,0,0,0.08)] transition-all duration-300 hover:scale-[1.02] ${containerClasses}`}>
       {/* Left section */}
       <div className="flex items-center space-x-5">
         {/* Image with embossed border */}
-        <div className={`w-24 h-24 rounded-md overflow-hidden bg-gray-700 border-gray-600 border shadow-[inset_2px_2px_6px_rgba(255,255,255,0.05),inset_-2px_-2px_6px_rgba(0,0,0,0.2)]`}>
+        <div className={`w-24 h-24 rounded-md overflow-hidden bg-muted border-border border shadow-[inset_2px_2px_6px_rgba(255,255,255,0.05),inset_-2px_-2px_6px_rgba(0,0,0,0.2)]`}>
           <img src={image} alt={title} className="w-full h-full object-cover rounded-md" />
         </div>
 
@@ -75,7 +73,7 @@ const SportsCard: React.FC<SportsCardProps> = ({
 
       {/* Right section - Prize */}
       <div className={`flex flex-col items-center justify-center ${rightPanelBg} rounded-md p-5 border ${rightPanelBorder} shadow-[inset_2px_2px_5px_rgba(255,255,255,0.7),inset_-2px_-2px_5px_rgba(0,0,0,0.06),0_3px_10px_rgba(0,0,0,0.08)]`}>
-        <p className={`text-sm font-medium mb-1 text-center ${isDark ? "text-gray-200" : "text-gray-600"}`}>In Prizes</p>
+        <p className={`text-sm font-medium mb-1 text-center text-muted-foreground`}>In Prizes</p>
         <p className={`text-3xl font-extrabold drop-shadow-[1px_1px_1px_rgba(255,255,255,0.3)] mb-3 text-center ${prizeAmountClasses}`}>
           ${prize}
         </p>

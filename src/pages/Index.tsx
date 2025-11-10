@@ -1,11 +1,19 @@
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
+import Hero2 from "@/components/Hero2";
 import Markets from "@/components/Markets";
+import Markets2 from "@/components/Markets2";
+import { useTheme } from "@/components/theme/ThemeProvider";
 import HowItWorks from "@/components/HowItWorks";
+import HowItWorks2 from "@/components/HowItWorks2";
 import Features from "@/components/Features";
+import Features2 from "@/components/Features2";
 import CTA from "@/components/CTA";
+import CTA2 from "@/components/CTA2";
 import Footer from "@/components/Footer";
+import Footer2 from "@/components/Footer2";
 import UpcomingEventsPanel from "@/components/UpcomingEventsPanel";
+import UpcomingEventsPanel2 from "@/components/UpcomingEventsPanel2";
 
 const Index = () => {
   const dummyMatches = [
@@ -302,16 +310,22 @@ const Index = () => {
     
   ];
 
+  const { theme } = useTheme();
+
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen bg-white dark:bg-gray-900">
       <Navbar />
-      <Hero />
-      <Markets />
-      <UpcomingEventsPanel matches={dummyMatches} />
-      <HowItWorks />
-      <Features />
-      <CTA />
-      <Footer />
+      {theme === "dark" ? <Hero2 /> : <Hero />}
+      {theme === "dark" ? <Markets2 /> : <Markets />}
+      {theme === "dark" ? (
+        <UpcomingEventsPanel2 matches={dummyMatches} />
+      ) : (
+        <UpcomingEventsPanel matches={dummyMatches} />
+      )}
+      {theme === "dark" ? <HowItWorks2 /> : <HowItWorks />}
+      {theme === "dark" ? <Features2 /> : <Features />}
+      {theme === "dark" ? <CTA2 /> : <CTA />}
+      {theme === "dark" ? <Footer2 /> : <Footer />}
     </div>
   );
 };
