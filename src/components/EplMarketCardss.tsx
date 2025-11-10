@@ -6,7 +6,7 @@ interface Team {
   record: string;
   logo: string;
 }
-
+ 
 interface Odds {
   moneyline: number;
   spread: string;

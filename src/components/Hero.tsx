@@ -17,7 +17,7 @@ const Hero = () => {
           </h1>
 
           <p className="mb-10 text-lg text-muted-foreground sm:text-xl">
-            Join the next generation prediction market platform. Trade on elections, sports, crypto, and more. 
+            Join the next generation prediction market platform. Trade on sports. 
             Real-time data, transparent odds, and instant settlements.
           </p>
 

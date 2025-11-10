@@ -5,11 +5,11 @@ const HowItWorks = () => {
     {
       icon: Search,
       title: "Find a Market",
-      description: "Browse trending prediction markets across categories like crypto, politics, sports, and technology."
+      description: "Browse trending prediction markets across categories like sports."
     },
     {
       icon: DollarSign,
-      title: "Buy Shares",
+      title: "Predict Shares",
       description: "Purchase YES or NO shares at current market prices. Each share pays 1 if you're right.",
     },
     {

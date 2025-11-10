@@ -1,6 +1,7 @@
 import React from "react";
 import { Calendar, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 interface SportsCardProps {
   image: string;
@@ -9,6 +10,7 @@ interface SportsCardProps {
   participants: number;
   description: string;
   prize: number;
+  id?: number;
 }
 
 const SportsCard: React.FC<SportsCardProps> = ({
@@ -18,37 +20,69 @@ const SportsCard: React.FC<SportsCardProps> = ({
   participants,
   description,
   prize,
+  id = 0,
 }) => {
+  const navigate = useNavigate();
+
+  const handleJoinNow = () => {
+    navigate(`/game/${id}`, {
+      state: {
+        title,
+        date,
+        participants,
+        description,
+        prize,
+        image,
+      },
+    });
+  };
+  const isDark = true; // Force dark theme for all cards
+
+  const containerClasses = "border-gray-700 bg-gray-800 hover:shadow-[inset_2px_2px_8px_rgba(255,255,255,0.05),inset_-3px_-3px_10px_rgba(0,0,0,0.2),0_10px_22px_rgba(0,0,0,0.35)]";
+
+  const titleClasses = "text-white";
+  const metaTextClasses = "text-gray-300";
+  const iconClasses = "text-gray-300";
+  const descClasses = "text-gray-200";
+  const rightPanelBorder = "border-gray-700";
+  const rightPanelBg = "bg-white/10";
+  const prizeAmountClasses = "text-green-400";
+  const buttonClasses = "bg-gray-100 hover:bg-white text-gray-900";
+
   return (
-    <div className="relative flex items-center justify-between p-6 rounded-xl border border-[#fff]/90 bg-[#201257] hover:bg-[#281a66] transition-all duration-300 shadow-[0_2px_10px_rgba(0,0,0,0.25)]">
-      {/* Left image */}
+    <div className={`relative flex items-center justify-between p-6 rounded-lg border shadow-[inset_2px_2px_6px_rgba(255,255,255,0.6),inset_-3px_-3px_8px_rgba(0,0,0,0.05),0_6px_18px_rgba(0,0,0,0.08)] transition-all duration-300 hover:scale-[1.02] ${containerClasses}`}>
+      {/* Left section */}
       <div className="flex items-center space-x-5">
-        <div className="w-24 h-24 rounded-lg overflow-hidden border border-[#6d5ae8]/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_3px_8px_rgba(0,0,0,0.3)]">
-          <img
-            src={image}
-            alt={title}
-            className="w-full h-full object-cover"
-          />
+        {/* Image with embossed border */}
+        <div className={`w-24 h-24 rounded-md overflow-hidden bg-gray-700 border-gray-600 border shadow-[inset_2px_2px_6px_rgba(255,255,255,0.05),inset_-2px_-2px_6px_rgba(0,0,0,0.2)]`}>
+          <img src={image} alt={title} className="w-full h-full object-cover rounded-md" />
         </div>
 
-        {/* Content */}
+        {/* Text content */}
         <div>
-          <h2 className="text-xl font-semibold text-white mb-1">{title}</h2>
-          <div className="flex items-center text-sm text-purple-200 mb-2">
-            <Calendar className="h-4 w-4 mr-1 opacity-80" />
+          <h2 className={`text-2xl font-bold drop-shadow-[1px_1px_1px_rgba(255,255,255,0.2)] mb-1 ${titleClasses}`}>
+            {title}
+          </h2>
+          <div className={`flex items-center text-sm font-medium mb-2 ${metaTextClasses}`}>
+            <Calendar className={`h-4 w-4 mr-1 opacity-80 ${iconClasses}`} />
             <span>{date}</span>
-            <Users className="h-4 w-4 ml-4 mr-1 opacity-80" />
-            <span>{participants} PARTICIPANTS</span>
+            <Users className={`h-4 w-4 ml-4 mr-1 opacity-80 ${iconClasses}`} />
+            <span>{participants} Participants</span>
           </div>
-          <p className="text-purple-100 text-sm">{description}</p>
+          <p className={`text-sm leading-snug ${descClasses}`}>{description}</p>
         </div>
       </div>
 
-      {/* Right prize section */}
-      <div className="flex flex-col items-end justify-center bg-[#2b1670]/70 rounded-lg p-4 border border-[#5e4bde]/40 shadow-inner">
-        <p className="text-sm text-purple-200 mb-1">In Prizes</p>
-        <p className="text-3xl font-bold text-emerald-400 mb-3">${prize}</p>
-        <Button className="rounded-full bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-fuchsia-500 text-white text-sm font-semibold px-6 py-2 transition-all shadow-[0_2px_8px_rgba(0,0,0,0.4)] hover:shadow-[0_4px_12px_rgba(128,0,255,0.4)]">
+      {/* Right section - Prize */}
+      <div className={`flex flex-col items-center justify-center ${rightPanelBg} rounded-md p-5 border ${rightPanelBorder} shadow-[inset_2px_2px_5px_rgba(255,255,255,0.7),inset_-2px_-2px_5px_rgba(0,0,0,0.06),0_3px_10px_rgba(0,0,0,0.08)]`}>
+        <p className={`text-sm font-medium mb-1 text-center ${isDark ? "text-gray-200" : "text-gray-600"}`}>In Prizes</p>
+        <p className={`text-3xl font-extrabold drop-shadow-[1px_1px_1px_rgba(255,255,255,0.3)] mb-3 text-center ${prizeAmountClasses}`}>
+          ${prize}
+        </p>
+        <Button 
+          onClick={handleJoinNow}
+          className={`rounded-md text-sm font-bold px-6 py-2 shadow-[0_2px_8px_rgba(0,0,0,0.2),inset_0_1px_0_rgba(255,255,255,0.4)] hover:shadow-[0_4px_12px_rgba(0,0,0,0.25)] transition-all ${buttonClasses}`}
+        >
           Join Now
         </Button>
       </div>

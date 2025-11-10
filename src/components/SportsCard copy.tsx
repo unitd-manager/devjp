@@ -3,130 +3,27 @@ import SportsCard from '@/components/SportsCard';
 import logo from "@/assets/premium.jpg";
 import Navbar from "@/components/Navbar";
 import { Button } from "@/components/ui/button";
-import { ChevronDown, Settings, Radio, Calendar, Flame, ChevronRight } from "lucide-react";
-import TexansIcon from "@/assets/image.png";
-import BasketIcon from "@/assets/basket.jpeg";
-import CricketIcon from "@/assets/cricket.png";
-import SoccerIcon from "@/assets/soccer.jpeg";
-import TennisIcon from "@/assets/tennis.jpeg";
-import BaseballIcon from "@/assets/baseball.jpeg";
-import HockeyIcon from "@/assets/hockey.jpeg";
-import GolfIcon from "@/assets/golf.png";
-
-
-interface Subcategory {
-  name: string;
-  icon?: string;
-}
-
-interface Category {
-  name: string;
-  icon?: string;
-  subcategories: Subcategory[];
-  count?: number;
-  hasNavigation?: boolean;
-}
-
-interface Filter {
-  name: string;
-  icon: React.ReactNode;
-  isActive?: boolean;
-}
-
-const SportIcon = ({ sport }: { sport: string }) => {
-  const getSportIcon = () => {
-    switch (sport) {
-      case "Basketball":
-        return <div className="h-5 w-5 rounded-full bg-orange-500"></div>;
-      case "Cricket":
-        return <div className="h-5 w-5 rounded-full bg-yellow-400 border-2 border-red-500"></div>;
-      case "Soccer":
-        return <div className="h-5 w-5 rounded-full bg-gradient-to-br from-blue-500 to-white"></div>;
-      case "Tennis":
-        return <div className="h-5 w-5 rounded-full bg-blue-300 border-2 border-green-500"></div>;
-      case "Baseball":
-        return <div className="h-5 w-5 rounded-full bg-white border-2 border-red-600"></div>;
-      case "Hockey":
-        return <div className="h-5 w-5 rounded-full bg-blue-300"></div>;
-      case "Golf":
-        return <div className="h-5 w-5 rounded-full bg-white border-2 border-red-500"></div>;
-      default:
-        return <div className="h-5 w-5 rounded-full bg-gray-300"></div>;
-    }
-  };
-  return getSportIcon();
-};
+import { ChevronDown, ChevronUp, Settings } from "lucide-react";
 
 const SportsPage = () => {
   const [selectedCategory, setSelectedCategory] = useState("All");
-  const [selectedFilter, setSelectedFilter] = useState("Live");
   const [expandedCategories, setExpandedCategories] = useState<Record<string, boolean>>({
     Football: true,
   });
   const [selectedEvent, setSelectedEvent] = useState(0);
   const [selectedTab, setSelectedTab] = useState("Ongoing");
 
-  const filters: Filter[] = [
-    { name: "Live", icon: <Radio className="h-4 w-4" />, isActive: true },
-    { name: "Upcoming", icon: <Calendar className="h-4 w-4" /> },
-    { name: "Trending", icon: <Flame className="h-4 w-4" /> },
-  ];
-
-  const categories: Category[] = [
-    {
-      name: "Football",
-      icon: TexansIcon,
-      count: 24,
-      subcategories: [
-        { name: "NFL" },
-        { name: "NCAA" },
-        { name: "CFL" },
-      ],
+  const categories = [
+    { name: "All", subcategories: [] },
+    { 
+      name: "Football", 
+      subcategories: ["College Football", "Pro Football"] 
     },
-    {
-      name: "Basketball",
-      icon: BasketIcon,
-      count: 18,
-      hasNavigation: true,
-      subcategories: [],
-    },
-    {
-      name: "Cricket",
-      icon: CricketIcon,
-      count: 12,
-      subcategories: [],
-    },
-    {
-      name: "Soccer",
-      icon: SoccerIcon,
-      count: 32,
-      hasNavigation: true,
-      subcategories: [],
-    },
-    {
-      name: "Tennis",
-      icon: TennisIcon,
-      count: 15,
-      subcategories: [],
-    },
-    {
-      name: "Baseball",
-      icon: BaseballIcon,
-      count: 8,
-      subcategories: [],
-    },
-    {
-      name: "Hockey",
-      icon: HockeyIcon,
-      count: 10,
-      subcategories: [],
-    },
-    {
-      name: "Golf",
-      icon: GolfIcon,
-      count: 6,
-      subcategories: [],
-    },
+    { name: "Basketball", subcategories: [] },
+    { name: "Hockey", subcategories: [] },
+    { name: "Soccer", subcategories: [] },
+    { name: "Tennis", subcategories: [] },
+    { name: "Golf", subcategories: [] },
   ];
 
   const dummySportsEvents = [
@@ -194,88 +91,53 @@ const SportsPage = () => {
       <Navbar />
       <div className="flex h-[calc(100vh-64px)]">
         {/* Left Sidebar - Categories */}
-        <div className="w-64 border-r border-gray-200 bg-white overflow-y-auto">
+        <div className="w-64 border-r border-gray-200 bg-gray-50 overflow-y-auto">
           <div className="p-4">
-            {/* Filters Section */}
-            <div className="mb-6">
-              <h3 className="text-sm font-medium text-gray-700 mb-3">Filters</h3>
-              <div className="space-y-1">
-                {filters.map((filter) => (
+            <div className="space-y-1">
+              {categories.map((category) => (
+                <div key={category.name}>
                   <button
-                    key={filter.name}
-                    onClick={() => setSelectedFilter(filter.name)}
-                    className={`w-full flex items-center gap-2 px-3 py-2 rounded text-sm font-medium transition-colors ${
-                      filter.isActive || selectedFilter === filter.name
-                        ? "text-green-600"
-                        : "text-gray-700 hover:bg-gray-50"
+                    onClick={() => {
+                      if (category.subcategories.length > 0) {
+                        toggleCategory(category.name);
+                      } else {
+                        setSelectedCategory(category.name);
+                      }
+                    }}
+                    className={`w-full flex items-center justify-between px-3 py-2 rounded text-sm font-medium transition-colors ${
+                      selectedCategory === category.name
+                        ? "bg-green-100 text-green-700"
+                        : "text-gray-700 hover:bg-gray-100"
                     }`}
                   >
-                    <span className={filter.isActive || selectedFilter === filter.name ? "text-green-600" : "text-gray-500"}>
-                      {filter.icon}
-                    </span>
-                    {filter.name}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Sports Section */}
-            <div>
-              <h3 className="text-sm font-medium text-gray-700 mb-3">Sports</h3>
-              <div className="space-y-1">
-                {categories.map((category) => (
-                  <div key={category.name}>
-                    <button
-                      onClick={() => {
-                        if (category.subcategories.length > 0) {
-                          toggleCategory(category.name);
-                        } else {
-                          setSelectedCategory(category.name);
-                        }
-                      }}
-                      className="w-full flex items-center justify-between px-3 py-2 rounded text-sm font-medium text-gray-700 hover:bg-gray-50 transition-colors"
-                    >
-                      <span className="flex items-center gap-2">
-                        {category.icon ? (
-                          <img
-                            src={category.icon}
-                            alt={`${category.name} icon`}
-                            className="h-5 w-5 rounded-full object-cover"
-                          />
-                        ) : (
-                          <SportIcon sport={category.name} />
-                        )}
-                        {category.name}
-                      </span>
-                      <div className="flex items-center gap-2">
-                        {category.count !== undefined && (
-                          <span className="text-xs text-gray-400 bg-gray-100 px-2 py-0.5 rounded">
-                            {category.count}
-                          </span>
-                        )}
-                        {category.subcategories.length > 0 ? (
-                          <ChevronDown className="h-4 w-4 text-gray-400" />
-                        ) : category.hasNavigation ? (
-                          <ChevronRight className="h-4 w-4 text-gray-400" />
-                        ) : null}
-                      </div>
-                    </button>
-                    {category.subcategories.length > 0 && expandedCategories[category.name] && (
-                      <div className="ml-8 mt-1 space-y-1">
-                        {category.subcategories.map((subcategory) => (
-                          <button
-                            key={subcategory.name}
-                            onClick={() => setSelectedCategory(subcategory.name)}
-                            className="w-full text-left px-3 py-2 rounded text-sm text-gray-600 hover:bg-gray-50 transition-colors"
-                          >
-                            {subcategory.name}
-                          </button>
-                        ))}
-                      </div>
+                    <span>{category.name}</span>
+                    {category.subcategories.length > 0 && (
+                      expandedCategories[category.name] ? (
+                        <ChevronUp className="h-4 w-4" />
+                      ) : (
+                        <ChevronDown className="h-4 w-4" />
+                      )
                     )}
-                  </div>
-                ))}
-              </div>
+                  </button>
+                  {category.subcategories.length > 0 && expandedCategories[category.name] && (
+                    <div className="ml-4 mt-1 space-y-1">
+                      {category.subcategories.map((subcategory) => (
+                        <button
+                          key={subcategory}
+                          onClick={() => setSelectedCategory(subcategory)}
+                          className={`w-full text-left px-3 py-2 rounded text-sm transition-colors ${
+                            selectedCategory === subcategory
+                              ? "bg-green-100 text-green-700"
+                              : "text-gray-600 hover:bg-gray-100"
+                          }`}
+                        >
+                          {subcategory}
+                        </button>
+                      ))}
+                    </div>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>

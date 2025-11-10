@@ -31,7 +31,7 @@ interface Match {
 const UpcomingEventsPanel = ({ matches }: { matches: Match[] }) => {
   return (
     <section className="w-full bg-gray-50 py-16">
-<div className="w-full">        
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">        
         {/* Section Header */}
         <div className="mb-12 text-center">
           <h2 className="text-4xl font-extrabold text-gray-900 tracking-tight">
@@ -45,7 +45,7 @@ const UpcomingEventsPanel = ({ matches }: { matches: Match[] }) => {
         </div>
 
         {/* Events List */}
-        <div>
+        <div className="space-y-6">
           {matches.map((match, i) => (
             <EplMarketCard key={i} match={match} index={i} />
           ))}

@@ -1,10 +1,12 @@
 import { Button } from "@/components/ui/button";
-import { TrendingUp, Menu } from "lucide-react";
+import { Menu, Moon, Sun } from "lucide-react";
 import logo from "@/assets/logo.png";
+import { useTheme } from "@/components/theme/ThemeProvider";
 
 const Navbar = () => {
+  const { theme, toggleTheme } = useTheme();
   return (
-    <nav className="sticky top-0 z-50 w-full border-b border-border bg-white/80 backdrop-blur-md">
+    <nav className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-md">
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           <div className="flex items-center gap-2">
@@ -29,6 +31,9 @@ const Navbar = () => {
           </div>
 
           <div className="flex items-center gap-3">
+            <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
+              {theme === "dark" ? <Sun className="h-5 w-5" /> : <Moon className="h-5 w-5" />}
+            </Button>
             <Button variant="ghost" className="hidden sm:inline-flex">
               Sign In
             </Button>
