@@ -5,22 +5,22 @@ const HowItWorks = () => {
     {
       icon: Search,
       title: "Find a Market",
-      description: "Browse trending prediction markets across categories like sports."
+      description: "Lorem Ipsum has been the industry's standard dummy text ever, when an unknown printer took a galley."
     },
     {
       icon: DollarSign,
       title: "Predict Shares",
-      description: "Purchase YES or NO shares at current market prices. Each share pays 1 if you're right.",
+      description: "Lorem Ipsum has been the industry's standard dummy text ever, when an unknown printer took a galley.",
     },
     {
       icon: TrendingUp,
       title: "Track & Trade",
-      description: "Monitor your positions and trade anytime. Prices fluctuate based on real-world events and market sentiment."
+      description: "Lorem Ipsum has been the industry's standard dummy text ever, when an unknown printer took a galley."
     },
     {
       icon: CheckCircle,
       title: "Get Paid",
-      description: "When the event resolves, winning shares automatically pay out 1 each. Instant settlements.",
+      description: "Lorem Ipsum has been the industry's standard dummy text ever, when an unknown printer took a galley.",
     }
   ];
 
